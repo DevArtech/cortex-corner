@@ -81,7 +81,11 @@ const videos = [
 const categories = ["All", "Fundamentals", "Research", "Computer Vision", "NLP", "Reinforcement Learning", "MLOps"];
 const levels = ["All Levels", "Beginner", "Intermediate", "Advanced"];
 
-export const Videos = () => {
+interface VideosProps {
+  onItemClick?: (type: string, id: number) => void;
+}
+
+export const Videos = ({ onItemClick }: VideosProps) => {
   return (
     <div className="space-y-8">
       <div>
@@ -126,7 +130,11 @@ export const Videos = () => {
       {/* Video Grid */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {videos.map((video) => (
-          <Card key={video.id} className="overflow-hidden bg-card/50 backdrop-blur-sm border-border/50 hover:border-border transition-all duration-200 hover:shadow-lg group">
+          <Card 
+            key={video.id} 
+            className="overflow-hidden bg-card/50 backdrop-blur-sm border-border/50 hover:border-border transition-all duration-200 hover:shadow-lg group cursor-pointer"
+            onClick={() => onItemClick?.("video", video.id)}
+          >
             <div className="relative">
               <img
                 src={video.thumbnail}

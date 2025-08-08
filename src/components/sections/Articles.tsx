@@ -65,7 +65,11 @@ const articles = [
   },
 ];
 
-export const Articles = () => {
+interface ArticlesProps {
+  onItemClick?: (type: string, id: number) => void;
+}
+
+export const Articles = ({ onItemClick }: ArticlesProps) => {
   const featuredArticles = articles.filter(article => article.featured);
   const regularArticles = articles.filter(article => !article.featured);
 
@@ -81,7 +85,11 @@ export const Articles = () => {
         <h2 className="text-xl font-semibold text-foreground">Featured Articles</h2>
         <div className="grid md:grid-cols-2 gap-6">
           {featuredArticles.map((article) => (
-            <Card key={article.id} className="p-6 bg-card/50 backdrop-blur-sm border-border/50 hover:border-border transition-all duration-200 hover:shadow-lg cursor-pointer group">
+            <Card 
+              key={article.id} 
+              className="p-6 bg-card/50 backdrop-blur-sm border-border/50 hover:border-border transition-all duration-200 hover:shadow-lg cursor-pointer group"
+              onClick={() => onItemClick?.("article", article.id)}
+            >
               <div className="space-y-4">
                 <div className="flex items-center gap-2">
                   <Badge variant="secondary" className="bg-tech-gradient text-primary-foreground">
@@ -124,7 +132,11 @@ export const Articles = () => {
         <h2 className="text-xl font-semibold text-foreground">All Articles</h2>
         <div className="space-y-4">
           {regularArticles.map((article) => (
-            <Card key={article.id} className="p-6 bg-card/50 backdrop-blur-sm border-border/50 hover:border-border transition-all duration-200 hover:shadow-lg cursor-pointer group">
+            <Card 
+              key={article.id} 
+              className="p-6 bg-card/50 backdrop-blur-sm border-border/50 hover:border-border transition-all duration-200 hover:shadow-lg cursor-pointer group"
+              onClick={() => onItemClick?.("article", article.id)}
+            >
               <div className="flex items-start gap-4">
                 <div className="flex-1 space-y-3">
                   <div className="flex items-center gap-2">

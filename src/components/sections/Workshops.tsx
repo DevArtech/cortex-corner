@@ -72,7 +72,11 @@ const workshops = [
   },
 ];
 
-export const Workshops = () => {
+interface WorkshopsProps {
+  onItemClick?: (type: string, id: number) => void;
+}
+
+export const Workshops = ({ onItemClick }: WorkshopsProps) => {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'completed':
@@ -144,7 +148,11 @@ export const Workshops = () => {
       {/* Workshops Grid */}
       <div className="space-y-6">
         {workshops.map((workshop) => (
-          <Card key={workshop.id} className="p-6 bg-card/50 backdrop-blur-sm border-border/50 hover:border-border transition-all duration-200 hover:shadow-lg">
+          <Card 
+            key={workshop.id} 
+            className="p-6 bg-card/50 backdrop-blur-sm border-border/50 hover:border-border transition-all duration-200 hover:shadow-lg cursor-pointer group"
+            onClick={() => onItemClick?.("workshop", workshop.id)}
+          >
             <div className="space-y-4">
               <div className="flex items-start justify-between">
                 <div className="space-y-2">
