@@ -9,6 +9,8 @@ import { Workshops } from "@/components/sections/Workshops";
 import { WorkshopDetail } from "@/components/sections/WorkshopDetail";
 import { Learnings } from "@/components/sections/Learnings";
 import { Research } from "@/components/sections/Research";
+import { Competitions } from "@/components/sections/Competitions";
+import { CompetitionDetail } from "@/components/sections/CompetitionDetail";
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState("overview");
@@ -32,6 +34,8 @@ const Index = () => {
           return <VideoDetail videoId={selectedItem.id} onBack={handleBackToSection} />;
         case "workshop":
           return <WorkshopDetail workshopId={selectedItem.id} onBack={handleBackToSection} />;
+        case "competition":
+          return <CompetitionDetail competitionId={selectedItem.id} onBack={handleBackToSection} />;
         default:
           return <Overview onNavigate={setActiveSection} />;
       }
@@ -49,6 +53,8 @@ const Index = () => {
         return <Learnings />;
       case "research":
         return <Research />;
+      case "competitions":
+        return <Competitions onItemClick={handleItemClick} />;
       default:
         return <Overview onNavigate={setActiveSection} />;
     }

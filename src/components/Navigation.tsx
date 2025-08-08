@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { BookOpen, Video, Lightbulb, Users, FlaskConical } from "lucide-react";
+import { BookOpen, Video, Lightbulb, Users, FlaskConical, Trophy } from "lucide-react";
 
 interface NavigationProps {
   activeSection: string;
@@ -14,6 +14,7 @@ const navigationItems = [
   { id: 'workshops', label: 'Workshops', icon: Lightbulb },
   { id: 'learnings', label: 'Learnings', icon: Users },
   { id: 'research', label: 'Research', icon: FlaskConical },
+  { id: 'competitions', label: 'Competitions', icon: Trophy },
 ];
 
 export const Navigation = ({ activeSection, onSectionChange }: NavigationProps) => {
